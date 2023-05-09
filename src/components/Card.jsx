@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react'
 import clear from '../assets/imgs/1.svg'
 import clouds from '../assets/imgs/2.svg'
+import overClouds from '../assets/imgs/3.svg'
 import rain from '../assets/imgs/5.svg'
 import drizzle from '../assets/imgs/6.svg'
 import snow from '../assets/imgs/7.svg'
@@ -15,7 +16,7 @@ export function Card({data}){
         if (weather === "Clear") {
             setImgWeather(clear)
         } else if (weather === "Clouds") {
-            setImgWeather(clouds)
+            setImgWeather(overClouds)
         } else if (weather === "Rain") {
             setImgWeather(rain)
         } else if (weather === "Drizzle") {
@@ -25,7 +26,7 @@ export function Card({data}){
         } else if (weather === "Wind") {
             setImgWeather(wind)
         }
-    }, []);
+    });
     
     return(
         <div className="container-card">

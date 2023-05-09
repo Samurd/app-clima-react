@@ -13,8 +13,26 @@ background-repeat: no-repeat;
 height: 100vh;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.input-search {
+  font-size: 1.2rem;
+  border: none;
+  padding: .5rem;
+  border-radius: 8rem;
+  outline: none;
+  background-color: var(--bg-color-light);
+  color: var(--bg-color);
+}
+
+
 .section-main {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,13 +69,13 @@ height: 100vh;
 
 .weather {
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .container-name {
   width: 100%;
-  margin-top: 1rem;
-  padding: 0 .6rem;
+  margin-top: .5rem;
+  padding: 0 .2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -65,7 +83,7 @@ height: 100vh;
 
 
 .container-name .name {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
