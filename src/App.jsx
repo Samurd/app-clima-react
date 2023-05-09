@@ -14,7 +14,7 @@ function App() {
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 5,
   }
 
 
@@ -22,20 +22,23 @@ function App() {
 
   const getPosition  = async () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      setData(position.coords);
+      setData(position?.coords);
     }, error, options);
   };
 
   const getApiData = async() => {
-    const apidata = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${data.latitude}&lon=${data.longitude}&lang=es&appid=${apiKey}&units=${units}`).then(res => setDataApi(res.data))
+    let apidata = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${data?.latitude}&lon=${data?.longitude}&lang=es&appid=${apiKey}&units=${units}`).then(res => setDataApi(res.data))
   }
   
 
 
   useEffect(() => {
     getPosition();
-    getApiData();
   }, [])
+
+  useEffect(() => {
+    getApiData()
+  }, [data])
 
   useEffect(() => {
     getApiData();
@@ -45,7 +48,7 @@ function App() {
     <>
     <main>
       <section className='section-main'>
-      <Card data={dataApi} />
+      <Card  data={dataApi}/>
       <button className='btn-change' onClick={() => {
         units === "metric" ? 
         setUnits("imperial") : setUnits("metric");
