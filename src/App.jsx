@@ -31,7 +31,9 @@ function App() {
   const getPosition  = async () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setData(position?.coords);
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 200)
     }, error, options);
   };
 
