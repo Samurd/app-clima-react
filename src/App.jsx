@@ -20,24 +20,25 @@ function App() {
   }
 
 
-  const error = (error) => console.log(error);
+  const error = (error) => {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        setLoading(true)
+        break;
+    }
+  };
 
   const getPosition  = async () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setData(position?.coords);
+      setLoading(false)
     }, error, options);
   };
 
   const getApiData = async() => {
     let apidata = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${data?.latitude}&lon=${data?.longitude}&lang=es&appid=${apiKey}&units=${units}`).then(res => setDataApi(res.data))
   }
-  
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 200)
-  }, [dataApi])
 
 
   useEffect(() => {
