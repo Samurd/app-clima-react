@@ -2,12 +2,14 @@ import axios from 'axios';
 import { useState,useEffect, Children } from 'react'
 import './App.css'
 import { Card } from './components/Card'
+import { Loading } from './components/Loading';
 
 function App() {
 
-  const[data, setData] = useState([]);
-  const[dataApi, setDataApi] = useState([]);
+  const[data, setData] = useState({});
+  const[dataApi, setDataApi] = useState({});
   const[units, setUnits] = useState("metric")
+  const[isloading, setLoading] = useState(true)
 
   let apiKey = "7a31bc476a0b55b4ff7f39dde7a30a0c"
 
@@ -31,13 +33,18 @@ function App() {
   }
   
 
+  useEffect(() => {
+      setLoading(false)
+  }, [dataApi])
+
 
   useEffect(() => {
     getPosition();
   }, [])
 
   useEffect(() => {
-    getApiData()
+    getApiData();
+    console.log(dataApi)
   }, [data])
 
   useEffect(() => {
@@ -48,7 +55,7 @@ function App() {
     <>
     <main>
       <section className='section-main'>
-      <Card  data={dataApi}/>
+        {isloading ? <Loading /> : <Card data={dataApi} /> }
       <button className='btn-change' onClick={() => {
         units === "metric" ? 
         setUnits("imperial") : setUnits("metric");
