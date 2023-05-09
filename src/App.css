@@ -119,7 +119,7 @@ header {
 .container-loading {
   position: fixed;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   background-color: #51b4e8;
   display: flex;
   align-items: center;
